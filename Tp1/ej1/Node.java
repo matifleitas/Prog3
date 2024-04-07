@@ -1,7 +1,8 @@
 package ej1;
 
+import java.util.Comparator;
 
-public class Node<T> implements Comparable<Node<T>>{
+public class Node<T>{
 	private T info;
 	private Node<T> next;
 	
@@ -10,9 +11,8 @@ public class Node<T> implements Comparable<Node<T>>{
 		this.next = null;
 	}
 
-	public Node(T info, Node<T> next) {
+	public Node(T info) {
 		this.setInfo(info);
-		this.setNext(next);
 	}
 
 	public Node<T> getNext() {
@@ -30,10 +30,15 @@ public class Node<T> implements Comparable<Node<T>>{
 	public void setInfo(T info) {
 		this.info = info;
 	}
-
-
-	@Override
-	public int compareTo(Node<T> o) {
-		return this.info.compareTo(o.getInfo());
+	
+	public void insertNext(Comparator<T> c, Node<T> nodo) {
+		if(this.next == null) {
+			this.next = nodo;
+		} else if(c.compare(this.next.getInfo(), nodo.getInfo()) > 0) {
+			nodo.insertNext(c, next);
+			next = nodo;
+		} else {
+			next.insertNext(c, nodo);
+		}
 	}
 }

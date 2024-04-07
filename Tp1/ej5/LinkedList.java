@@ -1,17 +1,16 @@
-package ej1;
+package ej5;
 
-import java.util.Comparator;
 import java.util.Iterator;
 
-public class MySimpleLinkedList<T> implements Iterable<T>{
+public class LinkedList <T> implements Iterable<T>{
 	private Node<T> first;
-	
-	public MySimpleLinkedList() { //constructor
+
+	public LinkedList() {
 		this.first = null;
 	}
-	
+
 	public void insertFront(T info) {
-		Node<T> temp = new Node<T>(info);
+		Node<T> temp = new Node<T>(info, null);
 		temp.setNext(this.first);
 		this.first = temp;
 	}
@@ -33,16 +32,6 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 
 	public boolean isEmpty() {
 		return this.first == null;  //si no existe el primero ya esta {0}
-	}
-	
-	public int size() {
-		int count=0;
-		Node<T> pointerNode = this.first;
-		while(pointerNode.getNext() != null) { //si != null el proximo hace un ++
-			count++;
-			pointerNode = pointerNode.getNext();
-		}
-		return count;
 	}
 	
 	@Override
@@ -72,35 +61,23 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 	    return first;
 	}
 	
-	public boolean exists(T info) {
-		Node<T> pointer = first;
-		while(pointer != null) {
-			if(pointer.getInfo().equals(info)) {
-				return true;
-			} else {
-				pointer = pointer.getNext();
-			}
+	public int size() {
+		int count=0;
+		Node<T> pointerNode = this.first;
+		while(pointerNode.getNext() != null) { //si != null el proximo hace un ++
+			count++;
+			pointerNode = pointerNode.getNext();
 		}
-		return false;
-	}
-	
-	public void insertOrder(T info, Comparator<T> comp) {
-		Node<T> newNode = new Node<>(info);
-		if(this.first == null) {
-			this.first = newNode;
-		} else {
-			if(comp.compare(this.first.getInfo(), info) > 0) {
-				newNode.insertNext(comp, this.first);
-				this.first = newNode;
-			} else {
-				this.first.insertNext(comp, newNode);
-			}
-		}
+		return count;
 	}
 
 	@Override
 	public Iterator<T> iterator() {
-		return new MyIterator<>(this.first);
+		return null;
 	}
-}
+	
+	public void elementosComunes(LinkedList<T> list1, LinkedList<T> list2) {
+		
+	}
 
+}
