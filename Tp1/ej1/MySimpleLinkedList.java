@@ -89,7 +89,7 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 		if(this.first == null) {
 			this.first = newNode;
 		} else {
-			if(comp.compare(this.first.getInfo(), info) > 0) {
+			if(comp.compare(this.first.getInfo(), info) > 0) {//si getInfo es mas mayor que info, nuevo nodo pasa a ser first
 				newNode.insertNext(comp, this.first);
 				this.first = newNode;
 			} else {
