@@ -61,7 +61,6 @@ public class Main {
     	while(iterat.hasNext()) {
     		Integer num = iterat.next();
     		if(list2.exists(num)) {
-    			
     			listFinal.insertOrder(num, c);
     		}
     	}

@@ -2,20 +2,12 @@ package ej5;
 
 public class Main {
 	public static void main (String [] args){
-		MyArray<Integer> myA = new MyArray<>();
+		int [] A = {-3, -1, 0, 1, 3, 5, 10, 13};
 		
-		myA.addElement(1);
-		myA.addElement(4);
-		myA.addElement(6);
-		myA.addElement(7);
-		myA.addElement(9);
-		myA.addElement(11);
-		myA.addElement(43);
-		myA.addElement(66);
-		myA.addElement(71);
-		myA.addElement(92);
-		System.out.println(myA);
-		myA.verificacion(7);
-		//buscar un numero que sea igual a la posicion del que te mando x parametros
+		MyArrayManager admin = new MyArrayManager();
+		int fin = A[A.length-1];
+		
+		boolean result = admin.estaEnArray(A, 0, fin);
+		System.out.println("Existe un valor que cumple la condicion en el array?: "+result);
 	}
 }

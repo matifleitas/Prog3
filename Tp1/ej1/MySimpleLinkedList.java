@@ -58,14 +58,16 @@ public class MySimpleLinkedList<T> implements Iterable<T>{
 	}
 	
 	public int indexOf(T info) {
-		T element = this.first.getInfo();
+		T elementBuscado = this.first.getInfo();
 		int count = 0;
 		
 		while(this.first != null) {
-			if(element == info) {
+			if(elementBuscado == info) {
 				return count;
-			} count ++;
-		} return -1;
+			} else {
+				count ++;
+			}
+		}return -1;
 	}
 
 	public Node<T> getFirst() {
