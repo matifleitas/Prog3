@@ -16,7 +16,7 @@ public class NumberBinary {
 			} else {
 				A.add(binaryTrue);
 			}
-			ArrayList<Integer> Acopy = new ArrayList<Integer>(A);
+			ArrayList<Integer> Acopy = new ArrayList<Integer>(A); 
 			calcularBinary(num/2, binaryFalse, binaryTrue, Acopy);
 		} else { //llego a 1 y ya no se puede dividir por 2
 			A.add(binaryTrue);
