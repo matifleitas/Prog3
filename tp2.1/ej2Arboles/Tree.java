@@ -1,5 +1,7 @@
 package ej2Arboles;
 
+import java.util.ArrayList;
+
 public class Tree {
 	private Node root;
 	private int valueTree;
@@ -42,7 +44,8 @@ public class Tree {
 			actual.setValue(valueMoreLeft);
 			actual.setRight(deleteNode(actual.getRight(), actual.getValue()));
 			
-		} return actual;
+		} 
+		return actual;
 	}
 	
 	private Integer findNodeMoreLeft(Node n) {
@@ -113,6 +116,36 @@ public class Tree {
 		if(nodeActual.hasChild()) {
 			this.valueTree = nodeActual.getValue() + getSum(nodeActual.getLeft()) + getSum(nodeActual.getRight());
 		} return valueTree;
+	}
+	
+	public ArrayList<Integer> getFrontera(){
+		return getFrontera(this.root);
+	}
+	
+	private ArrayList<Integer> getFrontera(Node actual){
+		if(actual == null) { 
+			return new ArrayList<>();
+		}
+		
+		ArrayList<Integer> A = new ArrayList<>();
+		if(!actual.hasChild()) {
+			A.add(actual.getValue());
+		} else {
+			A.addAll(getFrontera(actual.getLeft()));
+			A.addAll(getFrontera(actual.getRight()));
+		} return A;
+	}
+	
+	public ArrayList<Integer> getHojasMayoresAValue(int value){
+		ArrayList<Integer> ArrayDeHojas = this.getFrontera();
+		ArrayList<Integer> ArrayHojasMayores = new ArrayList<>();
+		
+		for(int i=0;i<ArrayDeHojas.size();i++) {
+			if(ArrayDeHojas.get(i) > value) {
+				ArrayHojasMayores.add(ArrayDeHojas.get(i));
+			}
+		}
+		return ArrayHojasMayores;
 	}
 }
 

@@ -21,6 +21,10 @@ public class Main {
 		System.out.println("El arbol tiene una altura de: "+treeOrd.getHeight());
 		
 		System.out.println("La raiz del arbol es: "+treeOrd.getRoot());
+		
+		treeOrd.delete(11);
+		System.out.println("--------------------------");
+		treeOrd.mostrarArbol();
 
 	}
 
