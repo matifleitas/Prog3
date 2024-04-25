@@ -11,14 +11,6 @@ public class Tree {
 		this.valueTree = 0;
 	}
 	
-	public void add(Integer value) {
-		if (this.root == null) {
-			this.root = new Node(value);
-		} else {
-			this.add(this.root,value);
-		}
-//		valueTree += value;
-	}
 	
 	public void delete(Integer value) {
 		root = deleteNode(this.root, value);
@@ -29,7 +21,7 @@ public class Tree {
 			return null;
 		}
 		
-		int state = value.compareTo(actual.getValue());
+		int state = value.compareTo(actual.getValue()); 
 		if (state < 0) {
 			actual.setLeft(deleteNode(actual.getLeft(), value));
 		} else if (state > 0) {
@@ -52,6 +44,14 @@ public class Tree {
 		if(n.getLeft() == null) {
 			return n.getValue();
 		} return findNodeMoreLeft(n.getLeft());
+	}
+	
+	public void add(Integer value) {
+		if (this.root == null) {
+			this.root = new Node(value);
+		} else {
+			this.add(this.root,value);
+		}
 	}
 	
 	private void add(Node actual, Integer value) {

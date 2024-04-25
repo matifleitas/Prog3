@@ -15,7 +15,7 @@ public class MyLinkedList<T>  implements Iterable<T>{
 	}
 	
 	public void insertFront(T info) {
-		Node<T> temp = new Node<T>(info, null);
+		Node<T> temp = new Node<T>(info);
 		temp.setNext(this.first);
 		this.first = temp;
 		this.size++;

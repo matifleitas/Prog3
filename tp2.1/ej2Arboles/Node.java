@@ -39,11 +39,5 @@ public class Node {
 	public boolean hasChild() {
 		return this.getLeft() != null || this.getRight() != null;
 	}
-
-//	@Override
-//	public String toString() {
-//		return "Node [value=" + value + ", left=" + left + ", right=" + right + "]";
-//	}
-
 	
 }

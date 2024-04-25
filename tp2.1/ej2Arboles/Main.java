@@ -15,6 +15,7 @@ public class Main {
         arbolBinary.add(44);
         arbolBinary.add(8);
         arbolBinary.add(2);
+        arbolBinary.add(9);
    
 
         
@@ -24,7 +25,7 @@ public class Main {
         System.out.println("----------------------------------");
         System.out.println("Valor total del arbol: " + arbolBinary.getSumInternal());
         System.out.println("----------------------------------");
-//        arbolBinary.delete(12);
+        arbolBinary.delete(7);
         arbolBinary.preOrder();     
         System.out.println("----------------------------------");
 
