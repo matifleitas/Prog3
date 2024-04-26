@@ -1,12 +1,22 @@
 package ej1_tp4;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class GrafoDirigido<T> implements Grafo<T>{
+//	private ArrayList<Integer> vertices;
+	private MyHashMap vertices;
+
+	public GrafoDirigido() {
+		this.vertices = new MyHashMap<>();
+	}
 
 	@Override
 	public void agregarVertice(int verticeId) {
-		
+		if(!vertices.containsKey(verticeId)) {
+			this.vertices.put(vertices, null);
+		}
 	}
 
 	@Override

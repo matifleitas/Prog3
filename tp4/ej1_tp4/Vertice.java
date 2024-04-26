@@ -1,6 +1,8 @@
-package estructura;
+package ej1_tp4;
 
 import java.util.ArrayList;
+
+import estructura.Arista;
 
 public class Vertice<T> {
 	private ArrayList<Arista> aristas;

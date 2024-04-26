@@ -1,4 +1,4 @@
-package estructura;
+package ej1_tp4;
 
 import java.util.HashMap;
 
