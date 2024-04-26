@@ -13,7 +13,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	@Override
 	public void agregarVertice(int verticeId) {
 		if(!vertices.containsKey(verticeId)) {
-			this.vertices.put(vertices, new Vertice<>());
+			this.vertices.put(verticeId, new Vertice<>());
 		}
 	}
 
@@ -24,7 +24,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
-		Arco arco = new Arco<T>(verticeId1, verticeId2, etiqueta);
+		//buscar en mi hashMap un vertice con ese Id1 y asignarle un nuevo arco, con la etiqueta
 	}
 
 	@Override
