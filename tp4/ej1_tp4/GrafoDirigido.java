@@ -1,5 +1,6 @@
 package ej1_tp4;
 
+import java.util.Iterator;
 
 public class GrafoDirigido<T> implements Grafo<T>{
 //	private ArrayList<Integer> vertices;
@@ -12,7 +13,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	@Override
 	public void agregarVertice(int verticeId) {
 		if(!vertices.containsKey(verticeId)) {
-			this.vertices.put(vertices, null);
+			this.vertices.put(vertices, new Vertice<>());
 		}
 	}
 
