@@ -19,17 +19,25 @@ public class GrafoDirigido<T> implements Grafo<T>{
 
 	@Override
 	public void borrarVertice(int verticeId) {
-		
+		if(vertices.containsKey(verticeId)) {
+			this.vertices.remove(verticeId);
+		}
 	}
 
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
-		//buscar en mi hashMap un vertice con ese Id1 y asignarle un nuevo arco, con la etiqueta
+		if (vertices.containsKey(verticeId1) && vertices.containsKey(verticeId2)) {
+	        Arco<T> arco = new Arco<>(verticeId1, verticeId2, etiqueta);//si existe el veritce creo un arco nuevo
+	        Vertice<T> vertice = (Vertice<T>) vertices.get(verticeId1);
+	        vertice.addArista(arco);	   
+	    }
 	}
 
 	@Override
 	public void borrarArco(int verticeId1, int verticeId2) {
-		
+		if(vertices.containsKey(verticeId1) && vertices.containsKey(verticeId2)) {
+			
+		}
 	}
 
 	@Override
