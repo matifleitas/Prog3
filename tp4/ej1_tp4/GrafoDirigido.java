@@ -3,7 +3,7 @@ package ej1_tp4;
 import java.util.Iterator;
 
 public class GrafoDirigido<T> implements Grafo<T>{
-//	private ArrayList<Integer> vertices;
+
 	private MyHashMap vertices;
 
 	public GrafoDirigido() {
@@ -20,6 +20,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	@Override
 	public void borrarVertice(int verticeId) {
 		if(vertices.containsKey(verticeId)) {
+			//borrar todas mis aristas de mi vertice
 			this.vertices.remove(verticeId);
 		}
 	}

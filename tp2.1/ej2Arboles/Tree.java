@@ -11,7 +11,6 @@ public class Tree {
 		this.valueTree = 0;
 	}
 	
-	
 	public void delete(Integer value) {
 		root = deleteNode(this.root, value);
 	}

@@ -16,4 +16,8 @@ public class Vertice<T> {
 	public boolean contiene(Arco a) {
 		return aristas.contains(a);
 	}
+	
+	public void borrarMisArcos() {
+		this.aristas.clear();
+	}
 }
