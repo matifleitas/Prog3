@@ -22,4 +22,8 @@ public class Arco<T> {
 	public T getEtiqueta() {
 		return etiqueta;
 	}	
+	
+	public Arco<T> getCopia(){
+		return new Arco<T>(this.getVerticeOrigen(), this.verticeDestino, this.getEtiqueta());
+	}
 }

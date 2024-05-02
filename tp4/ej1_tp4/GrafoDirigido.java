@@ -1,19 +1,25 @@
 package ej1_tp4;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class GrafoDirigido<T> implements Grafo<T>{
 
-	private MyHashMap vertices;
+	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
+	private int countVerices;
 
 	public GrafoDirigido() {
-		this.vertices = new MyHashMap<>();
+		this.vertices = new HashMap<>();
+		this.countVerices = 0;
 	}
 
 	@Override
 	public void agregarVertice(int verticeId) {
 		if(!vertices.containsKey(verticeId)) {
-			this.vertices.put(verticeId, new Vertice<>());
+			this.vertices.put(verticeId, new ArrayList<Arco<T>>());
+			this.countVerices++;
+			//agrego int verticeId, es decir un vertice y un new array pq es nuevo el vert
 		}
 	}
 
@@ -22,15 +28,16 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		if(vertices.containsKey(verticeId)) {
 			//borrar todas mis aristas de mi vertice
 			this.vertices.remove(verticeId);
+			this.countVerices--;
 		}
 	}
 
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
 		if (vertices.containsKey(verticeId1) && vertices.containsKey(verticeId2)) {
-	        Arco<T> arco = new Arco<>(verticeId1, verticeId2, etiqueta);//si existe el veritce creo un arco nuevo
-	        Vertice<T> vertice = (Vertice<T>) vertices.get(verticeId1);
-	        vertice.addArista(arco);	   
+	       ArrayList<Arco<T>> Array = vertices.get(verticeId1);//agarro los arcos del vert origen
+	       Arco<T> auxArco = new Arco(verticeId1, verticeId2, etiqueta);
+	       Array.add(auxArco); //add a mi array de arcos de mi vert origen
 	    }
 	}
 
@@ -43,42 +50,68 @@ public class GrafoDirigido<T> implements Grafo<T>{
 
 	@Override
 	public boolean contieneVertice(int verticeId) {
-		return false;
+		return vertices.containsKey(verticeId);
 	}
 
 	@Override
 	public boolean existeArco(int verticeId1, int verticeId2) {
-		return false;
+		return vertices.containsKey(verticeId1) && vertices.containsKey(verticeId2);
 	}
 
 	@Override
 	public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
-		return null;
+		ArrayList<Arco<T>> arrayAux = vertices.get(verticeId1);
+		for(int i=0;i<arrayAux.size();i++) {
+			if(arrayAux.get(i).getVerticeOrigen() == verticeId1 && arrayAux.get(i).getVerticeDestino() == verticeId2) {
+				Arco arco = new Arco<T>(verticeId1, verticeId2, arrayAux.get(i).getEtiqueta());
+				return arco;
+				//preguntar si puedo, return arrayAux.get(i)
+			}
+		}	return null;	
 	}
 
 	@Override
 	public int cantidadVertices() {
-		return 0;
+		return this.countVerices;
 	}
 
 	@Override
 	public int cantidadArcos() {
-		return 0;
+		int count=0;
+		for(Integer key : vertices.keySet()) {
+			ArrayList<Arco<T>> arrayArcos = vertices.get(key);
+			count += arrayArcos.size();
+		}
+		return count;
 	}
 
 	@Override
 	public Iterator<Integer> obtenerVertices() {
-		return null;
+		return vertices.keySet().iterator();
 	}
 
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
-		return null;
+	    ArrayList<Integer> adyacentes = new ArrayList<>();
+		if(this.vertices.containsKey(verticeId)) {
+			for (ArrayList<Arco<T>> ArrayArcos : this.vertices.values()) { //refactor con obtenerArcos
+				for (Arco<T> arco : ArrayArcos) {
+	                if (arco.getVerticeDestino() == verticeId) {
+	                    adyacentes.add(arco.getVerticeOrigen());
+	                }
+				}
+			}
+		} return adyacentes.iterator();
 	}
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
-		return null;
+		ArrayList<Arco<T>> arcosTotales = new ArrayList<>();
+		for (ArrayList<Arco<T>> ArrayArcos : this.vertices.values()) {
+			for (Arco<T> arco : ArrayArcos) {
+				arcosTotales.add(arco.getCopia());
+			}
+		}	return arcosTotales.iterator();
 	}
 
 	@Override
