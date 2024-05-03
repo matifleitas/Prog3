@@ -89,17 +89,33 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	public Iterator<Integer> obtenerVertices() {
 		return vertices.keySet().iterator();
 	}
-
+/*
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
 	    ArrayList<Integer> adyacentes = new ArrayList<>();
 		if(this.vertices.containsKey(verticeId)) {
 			for (ArrayList<Arco<T>> ArrayArcos : this.vertices.values()) { //refactor con obtenerArcos
+				//junto todos los arcos del grafo en ArrayArcos
 				for (Arco<T> arco : ArrayArcos) {
 	                if (arco.getVerticeDestino() == verticeId) {
 	                    adyacentes.add(arco.getVerticeOrigen());
 	                }
 				}
+			}
+		} return adyacentes.iterator();
+	}
+	*/
+
+	@Override //preguntar si es mas optimo asi o el de arriba
+	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
+	    ArrayList<Integer> adyacentes = new ArrayList<>();
+		if(this.vertices.containsKey(verticeId)) {
+			Iterator<Arco<T>> iterador = obtenerArcos();
+			if(obtenerArcos().hasNext()){
+                if (iterador.next().getVerticeDestino() == verticeId) {
+                    adyacentes.add(iterador.next().getVerticeOrigen());
+                }
+		
 			}
 		} return adyacentes.iterator();
 	}
