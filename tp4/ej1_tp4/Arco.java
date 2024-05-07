@@ -26,4 +26,12 @@ public class Arco<T> {
 	public Arco<T> getCopia(){
 		return new Arco<T>(this.getVerticeOrigen(), this.verticeDestino, this.getEtiqueta());
 	}
+
+	@Override
+	public String toString() {
+		return "Arco [verticeOrigen=" + verticeOrigen + ", verticeDestino=" + verticeDestino + ", etiqueta=" + etiqueta
+				+ "]";
+	}
+	
+	
 }

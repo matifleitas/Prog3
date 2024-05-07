@@ -89,23 +89,8 @@ public class GrafoDirigido<T> implements Grafo<T>{
 	public Iterator<Integer> obtenerVertices() {
 		return vertices.keySet().iterator();
 	}
-/*
-	@Override
-	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
-	    ArrayList<Integer> adyacentes = new ArrayList<>();
-		if(this.vertices.containsKey(verticeId)) {
-			for (ArrayList<Arco<T>> ArrayArcos : this.vertices.values()) { //refactor con obtenerArcos
-				//junto todos los arcos del grafo en ArrayArcos
-				for (Arco<T> arco : ArrayArcos) {
-	                if (arco.getVerticeDestino() == verticeId) {
-	                    adyacentes.add(arco.getVerticeOrigen());
-	                }
-				}
-			}
-		} return adyacentes.iterator();
-	}
-	*/
 
+/*
 	@Override //preguntar si es mas optimo asi o el de arriba
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
 	    ArrayList<Integer> adyacentes = new ArrayList<>();
@@ -119,7 +104,19 @@ public class GrafoDirigido<T> implements Grafo<T>{
 			}
 		} return adyacentes.iterator();
 	}
-
+*/
+	
+	@Override //preguntar si es mas optimo asi o el de arriba
+	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
+	    ArrayList<Integer> adyacentes = new ArrayList<>();
+		if(this.vertices.containsKey(verticeId)) {
+			ArrayList<Arco<T>> arcos = this.vertices.get(verticeId);
+			for(Arco<T> arco : arcos) {
+				adyacentes.add(arco.getVerticeDestino());
+			}
+		} return adyacentes.iterator();
+	}
+	
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
 		ArrayList<Arco<T>> arcosTotales = new ArrayList<>();
@@ -132,6 +129,30 @@ public class GrafoDirigido<T> implements Grafo<T>{
 
 	@Override
 	public Iterator<Arco<T>> obtenerArcos(int verticeId) {
-		return null;
+		ArrayList<Arco<T>> arcos = new ArrayList<>();
+		if(this.vertices.containsKey(verticeId)) {
+			 arcos = this.vertices.get(verticeId);
+		} return arcos.iterator();
+	}
+	
+	public void mostrarArcos(int verticeId) {
+	    Iterator<Arco<T>> iterador = obtenerArcos(verticeId);
+	    
+	    System.out.println("Arcos para el vértice " + verticeId + ":");
+	    
+	    while (iterador.hasNext()) {
+	        Arco<T> arco = iterador.next();
+	        System.out.println(arco); // Suponiendo que Arco<T> tiene una implementación adecuada de toString()
+	    }
+	}
+	
+	public void mostrarAdyacentes(int verticeId) {
+	    Iterator<Integer> iterador = this.obtenerAdyacentes(verticeId);
+	    
+	    System.out.println("Adyacentes de " + verticeId + ":");
+	    
+	    while (iterador.hasNext()) {
+	        System.out.println(iterador.next()); // Suponiendo que Arco<T> tiene una implementación adecuada de toString()
+	    }
 	}
 }
