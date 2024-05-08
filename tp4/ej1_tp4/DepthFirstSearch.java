@@ -2,7 +2,7 @@ package ej1_tp4;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class DepthFirstSearch {
+public class DepthFirstSearch { //en profundidad, recursivamente
 	private HashMap<Integer,InfoCamino> recorrido;
     private int tiempo;
 
@@ -12,9 +12,9 @@ public class DepthFirstSearch {
     
     public void dfs(Grafo g) {
     	Iterator<Integer> iteratVertices = g.obtenerVertices();
-    	inicializar(g, iteratVertices);//meto al recorrido mi primer vertice
+    	inicializar(iteratVertices);//meto al recorrido mi primer vertice
     	while(iteratVertices.hasNext()) {
-    		Integer vertice = iteratVertices.next();
+    		Integer vertice = iteratVertices.next();//num de vert
     		if(recorrido.get(vertice).getColor() == "blanco") {
     			dfsVisit(g, vertice);
     		}
@@ -22,7 +22,7 @@ public class DepthFirstSearch {
     }
     
     //metodo exclusivamente para chuquear que alla vertices aun y comenzar el recorrido
-    public void inicializar(Grafo grafito, Iterator<Integer> listVert) {
+    public void inicializar(Iterator<Integer> listVert) {
     	while(listVert.hasNext()) {
     		Integer aux = listVert.next(); //obtengo numVertice
     		InfoCamino info = new InfoCamino(0, 0, "blanco"); //creo info del camino
@@ -33,21 +33,25 @@ public class DepthFirstSearch {
     private void dfsVisit(Grafo grafito,Integer vertice){
     	InfoCamino info = recorrido.get(vertice);
     	info.setColor("amarillo");
-    	this.tiempo += 1;
+    	this.tiempo++;
     	info.setTiempo(tiempo);
-    	recorrido.replace(vertice, info); //actualizo mi vertice con su cambio de color y tiempo
+    	recorrido.put(vertice, info); //piso el color de mi vertice, pegandole a la misma key
     	
     	Iterator<Integer> ady = grafito.obtenerAdyacentes(vertice);
     	while(ady.hasNext()) {
     		Integer vertAdy = ady.next();
     		if(this.recorrido.get(vertAdy).getColor() == "blanco") {
     			dfsVisit(grafito, vertAdy);
+    		} else {
+    			if(this.recorrido.get(vertAdy).getColor() == "amarillo") {
+    				System.out.println("Tenemos un ciclo!");
+    			}
     		}
     	}
-    	recorrido.get(vertice).setColor("negro");
+    	info.setColor("negro");
     	this.tiempo++;
-    	recorrido.get(vertice).setTiempoFinal(tiempo);
+    	info.setTiempoFinal(tiempo);
+    	recorrido.put(vertice, info);
     }
-    
 }
 

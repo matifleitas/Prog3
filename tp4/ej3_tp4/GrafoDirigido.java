@@ -1,4 +1,4 @@
-package ej1_tp4;
+package ej3_tp4;
 
 import java.util.ArrayList;
 import java.util.HashMap;
