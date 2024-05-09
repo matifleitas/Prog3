@@ -1,16 +1,17 @@
 package ej3_tp4;
 
+
 public class InfoCamino {
 	
-    private boolean visitado;
+    private String color;
 
-    public InfoCamino(boolean visitado) {
-        this.visitado = visitado;
+    public InfoCamino(String color) {
+        this.color = color;
     }
-    public void setVisitado(Boolean visitado) {
-        this.visitado = visitado;
+    public void setColor(String color) {
+        this.color = color;
     }
-    public boolean getVisitado() {
-        return visitado;
+    public String getColor() {
+        return color;
     }
 }

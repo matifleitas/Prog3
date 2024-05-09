@@ -10,39 +10,41 @@ public class BusquedaDeCiclo {
 		this.recorrido = recorrido;
 	}
 	
-	public boolean hayCiclo(Grafo g) {
+	public void hayCiclo(Grafo g) {
 		Iterator<Integer> vertices = g.obtenerVertices();
 		inicializar(vertices);
-		while(vertices.hasNext()) {
+		while(vertices.hasNext()) { //el iterator queda apuntando al ultimo, corregir
 			Integer aux = vertices.next();
-			if(!recorrido.get(aux).getVisitado()) {
-				return hayCiclo(g, aux);
+			if(recorrido.get(aux).getColor() == "Blanco") {
+				hayCiclo(g, aux);
 			}
 		}
-		return false;
 	}
 	
-	private boolean hayCiclo(Grafo g, Integer vertice) {
+	private void hayCiclo(Grafo g, Integer vertice) {
 		InfoCamino info = recorrido.get(vertice);
-		info.setVisitado(true);
-		Iterator<Integer> adyacentes = g.obtenerAdyacentes(vertice);
-		while(adyacentes.hasNext()) {
-			Integer vertAdy = adyacentes.next();
-			if(!this.recorrido.get(vertAdy).getVisitado()) {
-				if(this.hayCiclo(g, vertAdy)) { // Si se encuentra un ciclo en la llamada recursiva, devolver true
-					return true;
-				}
+		info.setColor("Amarillo");
+		recorrido.put(vertice, info);
+		
+		Iterator <Integer> vertAdyacentes = g.obtenerAdyacentes(vertice);
+		while(vertAdyacentes.hasNext()) {
+			Integer vAdy = vertAdyacentes.next();
+			if(this.recorrido.get(vAdy).getColor() == "Blanco") {
+				hayCiclo(g, vAdy);
 			} else {
-				System.out.println("CICLO!");// Si el vértice adyacente ya ha sido visitado, hay un ciclo
-				return true;
+				if(recorrido.get(vAdy).getColor() == "Amarillo") {
+					System.out.println("Hay ciclo!");
+				}
 			}
-		} return false;
+		}
+		info.setColor("Negro");
+		recorrido.put(vertice, info);
 	}
 	
 	public void inicializar(Iterator<Integer> itVertices) {
 		while(itVertices.hasNext()) {
 			Integer indiceVertice = itVertices.next();
-			InfoCamino info = new InfoCamino(false);
+			InfoCamino info = new InfoCamino("Blanco");
 			recorrido.put(indiceVertice, info);
 		}
 	}
