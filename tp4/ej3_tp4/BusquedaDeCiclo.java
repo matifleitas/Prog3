@@ -13,7 +13,7 @@ public class BusquedaDeCiclo {
 	public void hayCiclo(Grafo g) {
 		Iterator<Integer> vertices = g.obtenerVertices();
 		inicializar(vertices);
-		while(vertices.hasNext()) { //el iterator queda apuntando al ultimo, corregir
+		while(vertices.hasNext()) { //el iterator queda apuntando al ultimo y los anteriores los elimina, corregir
 			Integer aux = vertices.next();
 			if(recorrido.get(aux).getColor() == "Blanco") {
 				hayCiclo(g, aux);
