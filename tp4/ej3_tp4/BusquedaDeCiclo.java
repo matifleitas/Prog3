@@ -11,8 +11,8 @@ public class BusquedaDeCiclo {
 	}
 	
 	public void hayCiclo(Grafo g) {
+		inicializar(g);
 		Iterator<Integer> vertices = g.obtenerVertices();
-		inicializar(vertices);
 		while(vertices.hasNext()) { //el iterator queda apuntando al ultimo y los anteriores los elimina, corregir
 			Integer aux = vertices.next();
 			if(recorrido.get(aux).getColor() == "Blanco") {
@@ -41,9 +41,10 @@ public class BusquedaDeCiclo {
 		recorrido.put(vertice, info);
 	}
 	
-	public void inicializar(Iterator<Integer> itVertices) {
-		while(itVertices.hasNext()) {
-			Integer indiceVertice = itVertices.next();
+	public void inicializar(Grafo g) {
+		Iterator<Integer> vertices = g.obtenerVertices();
+		while(vertices.hasNext()) {
+			Integer indiceVertice = vertices.next();
 			InfoCamino info = new InfoCamino("Blanco");
 			recorrido.put(indiceVertice, info);
 		}

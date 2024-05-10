@@ -21,10 +21,10 @@ public class Main {
 		grafito.agregarArco(2, 7, 1F);
 		grafito.agregarArco(12, 22, 3F);
 		grafito.agregarArco(7, 8, 6F);
-		grafito.agregarArco(5, 2, 12F);
 		grafito.agregarArco(8, 2, 31F);
 		grafito.agregarArco(7, 12, 11F);
 		grafito.agregarArco(7, 1, 21F);
+		grafito.agregarArco(22, 7, 43F);
 		
 		
 		HashMap<Integer, InfoCamino> map = new HashMap<>();
