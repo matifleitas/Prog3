@@ -1,13 +1,15 @@
 package ej3_tp4;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 public class BusquedaDeCiclo {
 	private HashMap<Integer, InfoCamino> recorrido;
 
-	public BusquedaDeCiclo(HashMap<Integer, InfoCamino> recorrido) {
-		this.recorrido = recorrido;
+	public BusquedaDeCiclo() {
+		this.recorrido = new HashMap<Integer, InfoCamino>();
 	}
 	
 	public void hayCiclo(Grafo g) {
@@ -49,4 +51,5 @@ public class BusquedaDeCiclo {
 			recorrido.put(indiceVertice, info);
 		}
 	}
+	
 }

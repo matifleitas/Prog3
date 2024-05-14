@@ -27,10 +27,8 @@ public class Main {
 		grafito.agregarArco(22, 7, 43F);
 		
 		
-		HashMap<Integer, InfoCamino> map = new HashMap<>();
-		
-		BusquedaDeCiclo ciclo = new BusquedaDeCiclo(map);
+		BusquedaDeCiclo ciclo = new BusquedaDeCiclo();
 		
 		ciclo.hayCiclo(grafito);
-	}	
+		}	
 }

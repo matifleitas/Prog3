@@ -15,8 +15,8 @@ public class BreadthFirstSearch { //en emplitud
     }
 	
 	public void bfs(Grafo g) {
+		inicializar(g);//poner todos en false y agregarlos a mi hashMap de visitados
 		Iterator<Integer> vertices = g.obtenerVertices();
-		inicializar(g, vertices);//poner todos en false y agregarlos a mi hashMap de visitados
 		while(vertices.hasNext()) { //empezar a recorrer con el hashMap cargado
 			Integer vertice = vertices.next();
 			if(!visitado.get(vertice)) { //entra si el valor de visitado sea false
@@ -41,7 +41,8 @@ public class BreadthFirstSearch { //en emplitud
 		}
 	}
 
-	public void inicializar(Grafo g, Iterator<Integer> listVertices) {
+	public void inicializar(Grafo g) {
+		Iterator<Integer> listVertices = g.obtenerVertices();
 		while(listVertices.hasNext()) {
 			Integer vertice = listVertices.next();
 			visitado.put(vertice, false);
