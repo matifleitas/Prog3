@@ -40,7 +40,7 @@ public class CaminoMasLargo<T> {
                 }
 			} 
 		}
-		caminoActual.remove(caminoActual.size() - 1);//remuevo de mi num final, un numero repetido
-        visitados.remove(indice); //elimino de mis visitados el repetido
+		caminoActual.remove(caminoActual.size() - 1);//bactraking eliminando el caminoActual
+        visitados.remove(indice); //eliminando la memoria de visitados de ese camino
 	}
 }
