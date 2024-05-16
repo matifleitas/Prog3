@@ -35,8 +35,12 @@ public class Main {
 		DepthFirstSearch recorrido = new DepthFirstSearch();
 		recorrido.dfs(grafito);
 		CaminoMasLargo camino = new CaminoMasLargo(grafito);
-		System.out.println(camino.encontrarCaminoMasLargo(1, 2));
 		System.out.println(camino.encontrarCaminoMasLargo(1, 7));
 		System.out.println(camino.encontrarCaminoMasLargo(7, 12));
+		System.out.println("--------------------------------------");
+		ExistaCamino exist = new ExistaCamino(grafito);
+		System.out.println(exist.camAV(2));
+		System.out.println(exist.camAV(12));
+		System.out.println(exist.camAV(8));
 	}
 }

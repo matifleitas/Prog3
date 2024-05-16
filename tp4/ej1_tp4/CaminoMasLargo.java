@@ -26,6 +26,7 @@ public class CaminoMasLargo<T> {
 	private void dfsCaminoMasLargo(int indice, int j) {
 		visitados.put(indice, true);
 		caminoActual.add(indice);		
+		
 		if(indice==j) {
 			if(this.caminoActual.size() > this.caminoMasLargo.size()) {
                 caminoMasLargo.clear();

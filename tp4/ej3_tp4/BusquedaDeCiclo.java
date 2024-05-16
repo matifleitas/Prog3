@@ -51,5 +51,4 @@ public class BusquedaDeCiclo {
 			recorrido.put(indiceVertice, info);
 		}
 	}
-	
 }
