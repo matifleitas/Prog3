@@ -16,37 +16,32 @@ public class CiudadCuadras<T> {
         this.g = g;
     }
 	
-	public void Bfs(Integer or, Integer d) {
+	public int bfs(Integer i, Integer d) {
 		inicializar(g);
-		if(!visitado.get(or)) 
-			System.out.println(bfs(or, d));
-	}
-	
-	private int bfs(Integer i, Integer d) {
-		int cuadras = 0;
 		visitado.put(i, true); 
 		cola.add(i);
-		while(!cola.isEmpty()) {
-			Integer vert = cola.poll();
-			if(vert.equals(d)) {
-				return cuadras;
-			}
-			Iterator<Integer> ady = g.obtenerAdyacentes(vert);
-			Boolean cuadraTomada = false;
-			while(ady.hasNext()) {
-				if(!cuadraTomada) {
-					cuadras++;
-				}
-				Integer verticeAdj = ady.next();
-				if(!visitado.get(verticeAdj)) {
-					cuadraTomada = true;
-					visitado.put(verticeAdj,true);
-					cola.add(verticeAdj);
-				}
-			}
-		} return cuadras;
-	}
+		int cuadras = 0;
 
+		while(!cola.isEmpty()) {
+			Integer size = cola.size();
+			for (int indice = 0; indice < size; indice++) {//cicla por mismo nivel de adyacentes agregada
+				Integer vert = cola.poll();
+				if(vert.equals(d)) {
+					return cuadras;
+				}
+				Iterator<Integer> ady = g.obtenerAdyacentes(vert);
+				while(ady.hasNext()) {
+				Integer verticeAdj = ady.next();
+					if(!visitado.get(verticeAdj)) {
+						visitado.put(verticeAdj,true);
+						cola.add(verticeAdj);
+					}
+				}
+			} cuadras++;
+		} 
+		return -1;
+	}
+	
 	public void inicializar(Grafo g) {
 		Iterator<Integer> listVertices = g.obtenerVertices();
 		while(listVertices.hasNext()) {
