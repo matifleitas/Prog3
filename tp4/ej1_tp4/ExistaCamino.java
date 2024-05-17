@@ -38,9 +38,10 @@ public class ExistaCamino<T> {
 			if(indice.equals(v)) {
 				fin = true;
 			} else {
-//				return caminoAvertV(indice, v);
-				if(!visitados.containsKey(indice))
+
+				if(!visitados.containsKey(indice)) 
 					fin = caminoAvertV(indice, v);
+				
 			}
 		}
 		this.visitados.remove(i);

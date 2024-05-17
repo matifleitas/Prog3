@@ -8,7 +8,6 @@ public class Main {
 		// Creo un grafo dirigdo donde las etiquetas de los arcos son valores Float
 		GrafoDirigido<Float> grafito = new GrafoDirigido<>();
 		
-		// Agrego los vertices 1 y 2
 		grafito.agregarVertice(1);
 		grafito.agregarVertice(2);
 		grafito.agregarVertice(7);
@@ -17,7 +16,6 @@ public class Main {
 		grafito.agregarVertice(12);
 		grafito.agregarVertice(22);
 
-		// Genero un arco desde 1 hasta 2 con el valor de etiqueta 3
 		grafito.agregarArco(1, 2, 3F);
 		grafito.agregarArco(12, 22, 3F);
 		grafito.agregarArco(7, 8, 6F);
@@ -27,7 +25,7 @@ public class Main {
 		grafito.agregarArco(22, 5, 111F);
 		grafito.agregarArco(2, 12, 111F);
 		
-		//System.out.println(etiqueta); // Debería imprimir 3
+ 
 		
 		grafito.mostrarArcos(7);
 		grafito.mostrarAdyacentes(7);
@@ -40,7 +38,8 @@ public class Main {
 		System.out.println("--------------------------------------");
 		ExistaCamino exist = new ExistaCamino(grafito);
 		System.out.println(exist.camAV(2));
-		System.out.println(exist.camAV(12));
-		System.out.println(exist.camAV(8));
+		System.out.println("----------------------------------------");
+		CiudadCuadras ciudad = new CiudadCuadras<>(grafito);
+		ciudad.Bfs(1, 12);
 	}
 }
