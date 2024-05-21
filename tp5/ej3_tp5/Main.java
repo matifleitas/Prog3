@@ -10,7 +10,13 @@ public class Main {
         int m = 10; // Ejemplo de valor de
         List<List<Integer>> lista = s.sumaSubconjunto(nums, m);
         System.out.println("Subconjuntos cuya suma es " + m + ": " + lista);
-    
+        
+        System.out.println("-----------------------------------------------");
+        
+		int[] nums2 = {2, 7, 9, 12, 14, 16}; // Ejemplo de conjunto de números
+        SumaConjuntos sum = new SumaConjuntos();
+        
+        System.out.println(sum.sumaConjuntos(nums2));
+        
 	}
-
 }
