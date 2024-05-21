@@ -6,11 +6,11 @@ import java.util.List;
 public class SumaConjuntos {
 
 	private List<List<Integer>> resultado;
-	private boolean noHaySolucion;
+	private boolean encontro;
 	
 	public SumaConjuntos() {
 		this.resultado = new ArrayList<>();
-		this.noHaySolucion = true;
+		this.encontro = false;
 	}
 	
 	public List<List<Integer>> sumaConjuntos(int [] a) {
@@ -19,13 +19,13 @@ public class SumaConjuntos {
 		sumaConjuntos(a, listIzq, listDer, 0);
 		return this.resultado;
 	}
-							//{2, 7, 9, 12, 14, 16}
+							   //{2, 7, 9, 12, 14, 16}
 	private void sumaConjuntos(int [] nums, List<Integer> listIzq, List<Integer> listDer, int indice) {
-		if(listIzq.size() + listDer.size() == nums.length && this.noHaySolucion) {
+		if(listIzq.size() + listDer.size() == nums.length && !this.encontro) {
 			if(esSolucion(listIzq, listDer)) {
 				this.resultado.add(new ArrayList<>(listIzq));
 				this.resultado.add(new ArrayList<>(listDer));
-				this.noHaySolucion = false;
+				this.encontro = true;
 			}
 		} else {
 			if(indice<nums.length) {
@@ -49,5 +49,8 @@ public class SumaConjuntos {
 			sum2 += integer;
 		}
 		return sum1==sum2;
+//		long sum1 = listIzq.stream().mapToInt(e -> e.intValue()).summaryStatistics().getSum();
+//		long sum2 = listDer.stream().mapToInt(e -> e.intValue()).summaryStatistics().getSum();
+//		return sum1==sum2;
 	}
 }

@@ -2,7 +2,7 @@ package ej2;
 
 import java.util.Iterator;
 
-public class MyIterator<T> implements Iterator<T> {
+public abstract class MyIterator<T> implements Iterator<T> {
 	
 	private Node<T> cursor;
 	
